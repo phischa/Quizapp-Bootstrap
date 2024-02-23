@@ -24,13 +24,25 @@ function init() {
 }
 
 function showQuestion() {
-    let question = questions[currentQuestion];
+    if (currentQuestion >= questions.length) {
+        document.getElementById('card-body').innerHTML = showEndScreen();
+    } else {
+        let question = questions[currentQuestion];
 
-    document.getElementById("question-text").innerHTML = question['question'];
-    document.getElementById("answer_1").innerHTML = question['answer_1'];
-    document.getElementById("answer_2").innerHTML = question['answer_2'];
-    document.getElementById("answer_3").innerHTML = question['answer_3'];
-    document.getElementById("answer_4").innerHTML = question['answer_4'];
+        document.getElementById("question-text").innerHTML = question['question'];
+        document.getElementById("answer_1").innerHTML = question['answer_1'];
+        document.getElementById("answer_2").innerHTML = question['answer_2'];
+        document.getElementById("answer_3").innerHTML = question['answer_3'];
+        document.getElementById("answer_4").innerHTML = question['answer_4'];
+    }
+}
+
+function showEndScreen() {
+    return /* HTML */ `
+    <div class="end-screen">
+        <h1 class="h1-end">FERTIG</h1>
+    </div>
+    `
 }
 
 function answer(selection) {
@@ -51,11 +63,12 @@ function answer(selection) {
 
 function nextQuestion() {
     currentQuestion++; //Variable wird z.B. von 0 auf 1 erhöht um auf die nächste Frage zuzugreifen
+    document.getElementById("current-question-number").innerHTML = currentQuestion + 1; //+1, weil currentQuestion bei 0 startet. Die Fragen aber bei 1 von x (nicht 0 von x)
     resetAddedClasses(); //Bevor die nächste Frage angezeigt wird, werden erstmal die added Classes entfernt
     showQuestion(); //zeigt nächste Frage
 }
 
-function resetAddedClasses() {
+function resetAddedClasses() { //entfernt die Klassen die in der function answer() geändert wurden
     document.getElementById("next-button").disabled = true;
     document.getElementById('answer_1').parentNode.classList.remove('bg-success');
     document.getElementById('answer_1').parentNode.classList.remove('bg-danger');

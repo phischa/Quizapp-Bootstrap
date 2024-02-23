@@ -29,4 +29,13 @@
     color: white !important; 
 }
 
+.end-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.h1-end {
+    margin-bottom: 0;
+}
 /* background-color: rgb(247, 247, 247) !important; */

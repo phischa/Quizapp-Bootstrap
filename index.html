@@ -26,7 +26,7 @@
     </nav>
     <div class="card-container">
         <div class="card main-card">
-            <div class="card-body">
+            <div class="card-body" id="card-body">
                 <h5 class="card-title" id="question-text">Frage</h5>
 
                 <div class="card answer-card mb-2" onclick="answer('answer_1')">
@@ -51,7 +51,7 @@
                 </div>
                 <div class="question-footer">
                     <div>
-                        <b>1</b> von <b id="all-questions">5</b> Fragen
+                        <b id="current-question-number">1</b> von <b id="all-questions">5</b> Fragen
                     </div>
                     <button onclick="nextQuestion()" class="btn btn-outline-primary" disabled id="next-button">Nächst Frage</button>
                 </div>
