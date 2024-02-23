@@ -28,7 +28,6 @@ function showQuestion() {
         document.getElementById('card-body').innerHTML = showEndScreen();
     } else {
         let question = questions[currentQuestion];
-
         document.getElementById("question-text").innerHTML = question['question'];
         document.getElementById("answer_1").innerHTML = question['answer_1'];
         document.getElementById("answer_2").innerHTML = question['answer_2'];
