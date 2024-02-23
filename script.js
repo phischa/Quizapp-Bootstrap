@@ -18,6 +18,8 @@ let questions = [
 ];
 
 let currentQuestion = 0; //legt fest, dass die 1.Frage Stelle 0 ist
+let rightAnswers = 0;
+
 function init() {
     document.getElementById("all-questions").innerHTML = questions.length; //Zahl an der Stelle so lang wie die Zahl aller Fragen
     showQuestion();
@@ -25,7 +27,12 @@ function init() {
 
 function showQuestion() {
     if (currentQuestion >= questions.length) {
-        document.getElementById('card-body').innerHTML = showEndScreen();
+        document.getElementById('end-screen').style = '';
+        document.getElementById('card-body').style = 'display: none';
+
+        document.getElementById("amount-of-questions").innerHTML = questions.length;
+        document.getElementById("amount-of-right-answers").innerHTML = rightAnswers;
+
     } else {
         let question = questions[currentQuestion];
         document.getElementById("question-text").innerHTML = question['question'];
@@ -36,23 +43,13 @@ function showQuestion() {
     }
 }
 
-function showEndScreen() {
-    return /* HTML */ `
-    <div class="end-screen">
-        <h1 class="h1-end">FERTIG</h1>
-    </div>
-    `
-}
-
 function answer(selection) {
     let question = questions[currentQuestion]; //question = questions[0]
-    //console.log('Selected ans is', selection);
     let selectedQuestionNumber = selection.slice(-1); //der letzte character von selection(als die jeweilige Zahl) wird extrhiert und ist gleich selectedQuestionNumber
-    /* console.log('selectedQuestionNumber is', selectedQuestionNumber);
-    console.log('Current Right', question['right_answer']); */
     let idOfRightAnswer = `answer_${question['right_answer']}`; //${...} fügt die Zahl questions[right_answer][x] ein.
     if (selectedQuestionNumber == question['right_answer']) { //Wenn Überieinstimmung
         document.getElementById(selection).parentNode.classList.add('bg-success'); //parentNode um an die übergeordnete Div der id="answer_3" zu kommen und diese die Klasse hinzuzufügen.
+        rightAnswers++; // Variable wird um 1 erhöht. Wichtig für die Anzeige auf dem Endscreen
     } else { // Wenn keine Übereinstimmung
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
