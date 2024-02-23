@@ -25,4 +25,8 @@
     padding-top: 8px;
 }
 
+.bg-success, .bg-danger {
+    color: white !important; 
+}
+
 /* background-color: rgb(247, 247, 247) !important; */
