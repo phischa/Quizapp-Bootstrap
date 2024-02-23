@@ -95,3 +95,12 @@ function resetAddedClasses() { //entfernt die Klassen die in der function answer
     document.getElementById('answer_4').parentNode.classList.remove('bg-success');
     document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
 }
+
+function restartGame() {
+    document.getElementById('end-screen').style = 'display: none'; //Versteckt die Endbildschrim
+    document.getElementById('card-body').style = ''; //Entfernt die Display: none Eigenschaft
+    document.getElementById('current-question-number').innerHTML = 1;
+    rightAnswers = 0; //Zurücksetzen
+    currentQuestion = 0; //Zurücksetzen
+    init();
+}
