@@ -35,6 +35,8 @@ let questions = [
 
 let currentQuestion = 0; //legt fest, dass die 1.Frage Stelle 0 ist
 let rightAnswers = 0;
+let AUDIO_SUCCESS = new Audio('audio/success.mp3');
+let AUDIO_WRONG = new Audio('audio/wrong.mp3');
 
 function init() {
     document.getElementById("all-questions").innerHTML = questions.length; //Zahl an der Stelle so lang wie die Zahl aller Fragen
@@ -70,9 +72,11 @@ function answer(selection) {
     if (selectedQuestionNumber == question['right_answer']) { //Wenn Überieinstimmung
         document.getElementById(selection).parentNode.classList.add('bg-success'); //parentNode um an die übergeordnete Div der id="answer_3" zu kommen und diese die Klasse hinzuzufügen.
         rightAnswers++; // Variable wird um 1 erhöht. Wichtig für die Anzeige auf dem Endscreen
+        AUDIO_SUCCESS.play();
     } else { // Wenn keine Übereinstimmung
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+        AUDIO_WRONG.play();
     }
     document.getElementById("next-button").disabled = false; //Nächste Frage Button wird klickbar
 }
