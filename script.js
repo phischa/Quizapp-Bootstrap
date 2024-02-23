@@ -44,32 +44,46 @@ function init() {
 }
 
 function showQuestion() {
-    if (currentQuestion >= questions.length) { //show endscreen
-        document.getElementById('end-screen').style = '';
-        document.getElementById('card-body').style = 'display: none';
-
-        document.getElementById("amount-of-questions").innerHTML = questions.length;
-        document.getElementById("amount-of-right-answers").innerHTML = rightAnswers;
-
+    if (gameIsOver()) { //show endscreen
+        showEndScreen();
     } else { //show next question
-        let percent = currentQuestion / questions.length; //Prozentrechnung des Fortschritts
-        percent = Math.round(percent * 100); //Math.round rundet das Ergebnis
-        document.getElementById('progress-bar').innerHTML = `${percent}%`;
-        document.getElementById('progress-bar').style.width = `${percent}%`;
-        let question = questions[currentQuestion];
-        document.getElementById("question-text").innerHTML = question['question'];
-        document.getElementById("answer_1").innerHTML = question['answer_1'];
-        document.getElementById("answer_2").innerHTML = question['answer_2'];
-        document.getElementById("answer_3").innerHTML = question['answer_3'];
-        document.getElementById("answer_4").innerHTML = question['answer_4'];
+        updateProgressBar();
+        updateToNextQuestion();
     }
+}
+
+function gameIsOver() {
+    return currentQuestion >= questions.length;
+}
+
+function showEndScreen() {
+    document.getElementById('end-screen').style = '';
+    document.getElementById('card-body').style = 'display: none';
+    document.getElementById("amount-of-questions").innerHTML = questions.length;
+    document.getElementById("amount-of-right-answers").innerHTML = rightAnswers;
+}
+
+function updateProgressBar() {
+    let percent = currentQuestion / questions.length; //Prozentrechnung des Fortschritts
+    percent = Math.round(percent * 100); //Math.round rundet das Ergebnis
+    document.getElementById('progress-bar').innerHTML = `${percent}%`;
+    document.getElementById('progress-bar').style.width = `${percent}%`;
+}
+
+function updateToNextQuestion() {
+    let question = questions[currentQuestion];
+    document.getElementById("question-text").innerHTML = question['question'];
+    document.getElementById("answer_1").innerHTML = question['answer_1'];
+    document.getElementById("answer_2").innerHTML = question['answer_2'];
+    document.getElementById("answer_3").innerHTML = question['answer_3'];
+    document.getElementById("answer_4").innerHTML = question['answer_4'];
 }
 
 function answer(selection) {
     let question = questions[currentQuestion]; //question = questions[0]
     let selectedQuestionNumber = selection.slice(-1); //der letzte character von selection(als die jeweilige Zahl) wird extrhiert und ist gleich selectedQuestionNumber
     let idOfRightAnswer = `answer_${question['right_answer']}`; //${...} fügt die Zahl questions[right_answer][x] ein.
-    if (selectedQuestionNumber == question['right_answer']) { //Wenn Überieinstimmung
+    if (selectedAnswerIsRight(selectedQuestionNumber, question)) { //Wenn Übereinstimmung
         document.getElementById(selection).parentNode.classList.add('bg-success'); //parentNode um an die übergeordnete Div der id="answer_3" zu kommen und diese die Klasse hinzuzufügen.
         rightAnswers++; // Variable wird um 1 erhöht. Wichtig für die Anzeige auf dem Endscreen
         AUDIO_SUCCESS.play();
@@ -79,6 +93,10 @@ function answer(selection) {
         AUDIO_WRONG.play();
     }
     document.getElementById("next-button").disabled = false; //Nächste Frage Button wird klickbar
+}
+
+function selectedAnswerIsRight(selectedQuestionNumber, question) {
+    return selectedQuestionNumber == question['right_answer'];
 }
 
 function nextQuestion() {
