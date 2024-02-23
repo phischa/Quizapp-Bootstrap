@@ -30,6 +30,7 @@
 }
 
 .end-screen {
+    padding: 24px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -38,6 +39,10 @@
 
 .end-screen img {
     margin-bottom: 24px;
+}
+
+.end-screen span {
+    margin-top: 16px;
 }
 
 .h1-end {
