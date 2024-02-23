@@ -14,6 +14,22 @@ let questions = [
         "answer_3": "Larry Page",
         "answer_4": "Bill Gates",
         "right_answer": 2
+    },
+    {
+        "question": "Wie kann man den HTML Teil mit JS verändern?",
+        "answer_1": "mit .innerHTML",
+        "answer_2": "mit .splice",
+        "answer_3": "mit .style",
+        "answer_4": "mit .changeHTML",
+        "right_answer": 1
+    },
+    {
+        "question": "Welche Programmiersprache braucht man fürs Frontend",
+        "answer_1": "R",
+        "answer_2": "C#",
+        "answer_3": "C++",
+        "answer_4": "JavaScript",
+        "right_answer": 4
     }
 ];
 
@@ -26,14 +42,18 @@ function init() {
 }
 
 function showQuestion() {
-    if (currentQuestion >= questions.length) {
+    if (currentQuestion >= questions.length) { //show endscreen
         document.getElementById('end-screen').style = '';
         document.getElementById('card-body').style = 'display: none';
 
         document.getElementById("amount-of-questions").innerHTML = questions.length;
         document.getElementById("amount-of-right-answers").innerHTML = rightAnswers;
 
-    } else {
+    } else { //show next question
+        let percent = currentQuestion / questions.length; //Prozentrechnung des Fortschritts
+        percent = Math.round(percent * 100); //Math.round rundet das Ergebnis
+        document.getElementById('progress-bar').innerHTML = `${percent}%`;
+        document.getElementById('progress-bar').style.width = `${percent}%`;
         let question = questions[currentQuestion];
         document.getElementById("question-text").innerHTML = question['question'];
         document.getElementById("answer_1").innerHTML = question['answer_1'];

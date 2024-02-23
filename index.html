@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="icon" type="image/png" href="./icon/favicon.png" alt="app icon"> -->
+    <link rel="icon" type="image/png" href="./img/brain result.png" alt="app icon">
     <title>Quiz App</title>
 
     <link rel="stylesheet" href="style.css">
@@ -26,14 +26,12 @@
     </nav>
     <div class="card-container">
         <div class="card main-card">
-
             <div class="end-screen" id="end-screen" style="display: none">
                 <img src="/img/brain result.png" alt="">
                 <h1 class="h1-end">Coding Quiz <br> abgeschlossen</h1>
-                <span> <b id="amount-of-right-answers">X</b> von <b id="amount-of-questions">X</b> Fragen richtig beantwortet</span>
+                <span> <b id="amount-of-right-answers">X</b> von <b id="amount-of-questions">X</b> Fragen richtig
+                    beantwortet</span>
             </div>
-
-
             <div class="card-body" id="card-body">
                 <h5 class="card-title" id="question-text">Frage</h5>
 
@@ -61,7 +59,12 @@
                     <div>
                         <b id="current-question-number">1</b> von <b id="all-questions">5</b> Fragen
                     </div>
-                    <button onclick="nextQuestion()" class="btn btn-outline-primary" disabled id="next-button">Nächst Frage</button>
+                    <button onclick="nextQuestion()" class="btn btn-outline-primary" disabled id="next-button">Nächst
+                        Frage</button>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" id="progress-bar" role="progressbar" style="width: 0%;">0%
+                    </div>
                 </div>
             </div>
         </div>

@@ -17,12 +17,16 @@
 }
 
 .question-footer {
-    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 8px;
     padding-top: 8px;
+}
+
+.progress {
+    margin-top: 8px;
 }
 
 .bg-success, .bg-danger {
